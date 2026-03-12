@@ -110,16 +110,16 @@ class AB{
     //fetch_assoc: kep nev
     public function kartyakMegjelenitese($objektumLista){
         //teljes div
-        echo "<div>";
+        echo "<div id='teljes'>";
         for ($i=0; $i < count($objektumLista); $i++) { 
             if ($i%8==0) {
                 //sornyitó div
-                echo "<div>";
+                echo "<div class='sorok'>";
             }
             $szin = $objektumLista[$i]->getSzin();
             $forma = $objektumLista[$i]->getForma();
-            echo "<div><img src='forras/$szin'></div>";
-            echo "<div>$forma</div>";
+            echo "<div id='i'><img src='forras/$szin'></div>";
+            echo "<div id='p'><p>$forma</p></div>";
             if ($i%8==7) {
                 //sorzáró div
                 echo "</div>";

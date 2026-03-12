@@ -1,0 +1,19 @@
+*{
+    margin: 0px;
+}
+
+.sorok{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "i i i i i i i i"
+    "p p p p p p p p";
+    text-align: center;
+}
+#i{
+    grid-area: i;
+}
+#p{
+    grid-area: p;
+}
