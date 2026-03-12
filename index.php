@@ -17,10 +17,10 @@
             echo $e->getMessage();
         }
         echo "<br>";
-        echo $adatbazis->meret("szin");
+        //echo $adatbazis->meret("szin");
 
-        $matrix2 = $adatbazis->oszlopLeker2("nev","kep","szin");
-        $adatbazis->megjelenit2($matrix2);
+        /*$matrix2 = $adatbazis->oszlopLeker2("nev","kep","szin");
+        $adatbazis->megjelenit2($matrix2);*/
 
         /*$matrix3 = $adatbazis->oszlopLeker3("formaAzon","szinAzon","kartya");
         $adatbazis->megjelenit3($matrix3);*/
@@ -31,10 +31,12 @@
         }} catch(Exception $e){
             echo $e->getMessage();
         }
+        $matrix = $adatbazis->kartyakBeolvasasa();
+        $kartyak = $adatbazis->kartyakObjektummal($matrix);
         
-        $matrix = $adatbazis->oszlopLeker2("nev","kep","szin");
-        $tomb = $adatbazis->tombbeAlakit($matrix);
-
+        //$matrix = $adatbazis->oszlopLeker2("nev","kep","szin");
+        //$tomb = $adatbazis->tombbeAlakit($matrix);
+        $adatbazis->kartyakMegjelenitese($kartyak);
 
         $adatbazis->bezaras();
      ?>

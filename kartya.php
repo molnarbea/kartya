@@ -17,7 +17,7 @@
             $this->forma = $forma;
         }
         public function __toString(){
-            return "Kártya szine: ".$this->szin."<br>Kártya formája: ".$this->forma;
+            return "<br>Kártya szine: ".$this->szin."<br>Kártya formája: ".$this->forma;
         }
     }
 ?>

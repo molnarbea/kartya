@@ -1,4 +1,5 @@
 <?php
+require_once "kartya.php";
 class AB{
     //adattagok
     private $host="localhost";
@@ -85,10 +86,47 @@ class AB{
         $matrix3 = $this->kapcsolat->query($sql);
         return $matrix3;
     }
-    public function kartyaBeolvas(){
-        // $sql = "SELECT $oszlop1, $oszlop2 FROM $tabla";
-        //$matrix3 = $this->kapcsolat->query($sql);
-        //return $matrix3;
+    public function kartyakBeolvasasa(){
+        $sql= "SELECT szin.kep, forma.nev
+                FROM kartya
+                inner JOIN forma on forma.formaAzon = kartya.formaAzon
+                inner JOIN szin on szin.szinAzon = kartya.szinAzon";
+        $matrix = $this->kapcsolat->query($sql);
+        return $matrix;
+    }
+    public function kartyakObjektummal($matrix){
+        $objektumLista = [];
+        while ($sor = $matrix->fetch_assoc()) {
+            $kartya = new Kartya();
+            $kartya->setSzin($sor["kep"]);
+            $kartya->setForma($sor["nev"]);
+            //echo $kartya;
+            $objektumLista[] = $kartya;
+        }
+        shuffle($objektumLista);
+        return $objektumLista;
+    }
+    //fetch_row: 0 1 2
+    //fetch_assoc: kep nev
+    public function kartyakMegjelenitese($objektumLista){
+        //teljes div
+        echo "<div>";
+        for ($i=0; $i < count($objektumLista); $i++) { 
+            if ($i%8==0) {
+                //sornyitó div
+                echo "<div>";
+            }
+            $szin = $objektumLista[$i]->getSzin();
+            $forma = $objektumLista[$i]->getForma();
+            echo "<div><img src='forras/$szin'></div>";
+            echo "<div>$forma</div>";
+            if ($i%8==7) {
+                //sorzáró div
+                echo "</div>";
+            }
+        }
+        //teljes lezáró div
+        echo "</div>";
     }
     public function megjelenit3($matrix3){
         echo "<table>";
